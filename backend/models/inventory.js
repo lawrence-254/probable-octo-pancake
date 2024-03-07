@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const livingRoomSchema = new mongoose.Schema({
+const inventorySchema = new mongoose.Schema({
     item: {
         type: String,
         required: true
@@ -24,4 +24,4 @@ const livingRoomSchema = new mongoose.Schema({
 });
 
 
-export const LivingRoom = mongoose.model('LivingRoom', livingRoomSchema);
+export const Inventory = mongoose.model('Inventory', inventorySchema);

@@ -1,1 +1,1 @@
-An invontory tracking system for reatailers using the mern stack
+An inventory tracking system for retailers using the mern stack

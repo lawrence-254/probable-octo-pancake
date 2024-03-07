@@ -11,6 +11,27 @@ app.get('/', (req, res) => {
 
 });
 
+app.post('/inventory', async (req, res) => {
+    try {
+        if (!req.body.item || !req.body.type || !req.body.description || !req.body.price || !req.body.quantity) {
+            return res.status(400).send({
+                message: "Add all the required fields"
+            });
+        }
+
+        const newEntry = {
+            item: req.body.item,
+            type: req.body.type,
+            description: req.body.description,
+            price: req.body.price,
+            quantity: req.body.quantity
+        }
+    }
+    catch (error) {
+        console.log(error.message);
+        res.status(500);
+    }
+})
 
 
 mongoose.connect(dbMongo).then(() => {

@@ -1,0 +1,1 @@
+An invontory tracking system for reatailers using the mern stack

@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import mongoose from 'mongoose'
 
 const inventorySchema = new mongoose.Schema({

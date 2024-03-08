@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import express from 'express';
+import mongoose from 'mongoose';
 import { Inventory } from '../models/inventory.js';
 const router = express.Router();
 // adding inventory

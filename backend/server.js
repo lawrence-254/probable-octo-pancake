@@ -57,7 +57,6 @@ app.get('/inventory', async (req, res) => {
 app.get('/inventory/:id', async (req, res) => {
     try {
         const { id } = req.params;
-        const fetchedInventory = await Inventory.findById({ id });
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({
@@ -65,6 +64,7 @@ app.get('/inventory/:id', async (req, res) => {
             });
         }
 
+        const fetchedInventory = await Inventory.findById(id);
 
         if (!fetchedInventory) {
             return res.status(404).json({
@@ -72,28 +72,77 @@ app.get('/inventory/:id', async (req, res) => {
             });
         }
 
-        return res.status(200).json({ fetchedInventory })
-    }
-    catch (error) {
+        return res.status(200).json({
+            fetchedInventory
+        });
+    } catch (error) {
         console.log(error.message);
-        res.status(500).json({ Error: error.message });
+        res.status(500).json({
+            error: error.message
+        });
     }
 });
+
 // update
 app.put('/inventory/:id', async (req, res) => {
     try {
         if (!req.body.item || !req.body.type || !req.body.description || !req.body.price || !req.body.quantity) {
             return res.status(400).send({
-                message: "Add all the required fields"
+                message: "some of the required fields are missing"
             });
         }
 
+        const { id } = req.params;
+        const updatedInventory = await Inventory.findByIdAndUpdate(id, req.body, { new: true });
+
+        if (!updatedInventory) {
+            return res.status(404).json({
+                message: "Item not in the inventory"
+            });
+        }
+
+        return res.status(200).json({
+            message: "Item details updated successfully",
+            updatedInventory
+        });
     }
     catch (error) {
         console.log(error.message);
         res.status(500).json({ Error: error.message });
     }
 })
+
+//delete
+app.delete('/inventory/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({
+                message: 'Invalid ID format'
+            });
+        }
+
+        const toBeDeletedInventory = await Inventory.findByIdAndDelete(id);
+
+        if (!toBeDeletedInventory) {
+            return res.status(404).json({
+                message: 'Inventory not found'
+            });
+        }
+
+        return res.status(200).json({
+            message: 'Inventory deleted successfully',
+            deletedInventory: toBeDeletedInventory
+        });
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({
+            error: error.message
+        });
+    }
+});
+
 // initializing mongo dd database
 mongoose.connect(dbMongo).then(() => {
     console.log('connection to the database has been established');

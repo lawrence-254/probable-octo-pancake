@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import express from 'express';
+const cors = require('cors')
 import { PORT, dbMongo } from './config.js';
 import mongoose from 'mongoose';
 import { Inventory } from './models/inventory.js';

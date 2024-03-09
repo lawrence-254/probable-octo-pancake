@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import {BsArrowLft }from "react-icons/bs";
+import {BsArrowLeft }from "react-icons/bs";
 
 import React from 'react'
 
 const BackButton = ({destination = '/'}) => {
   return (
     <div className="flex">
-        <Link to={destination} className="rounded-ms bg-black text-white">
-            <BsArrowLft/>
+        <Link to={destination} className="rounded-1g bg-black text-white px-4 py-1 w-fit">
+            <BsArrowLeft className="text=2x1"/>
             Home
         </Link>
     </div>

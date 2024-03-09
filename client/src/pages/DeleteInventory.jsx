@@ -1,10 +1,10 @@
 import React from 'react'
-import BackButton from '../components/BackButton'
+// import BackButton from '../components/BackButton'
 
 function DeleteInventory() {
   return (
     <div>
-        <BackButton destination="/"/>
+        {/* <BackButton destination="/"/> */}
       <h1>DeleteInventory</h1>
     </div>
   )

@@ -5,11 +5,10 @@ import { Link } from 'react-router-dom';
 import {AiOutlineEdit} from 'react-icons/ai';
 import{ BsInfoCircle} from 'react-icons/bs';
 import  { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
-// import { set } from 'mongoose';
 
 function Home() {
     const [inventory, setInventory] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         setLoading(true);
         axios.get('http://localhost:5000/inventory')

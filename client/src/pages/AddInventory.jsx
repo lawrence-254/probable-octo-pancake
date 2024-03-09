@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 function AddInventory() {
     const [inventory, setInventory] = useState([]);
     const [loading, setLoading] = useState(false);

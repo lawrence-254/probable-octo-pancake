@@ -6,9 +6,8 @@ import React from 'react'
 const BackButton = ({destination = '/'}) => {
   return (
     <div className="flex">
-        <Link to={destination} className="rounded-md bg-yellow-400 text-green-800 px-4 py-1 w-fit">
+        <Link to={destination} className="rounded-md bg-yellow-400 hover:bg-yellow-600 text-green-800 hover:text-green-400 px-4 py-1 w-fit ">
             <BsArrowLeft className="text=2x1"/>
-            Home
         </Link>
     </div>
   )

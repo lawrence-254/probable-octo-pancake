@@ -29,39 +29,44 @@ function ViewInventory() {
       <BackButton />
       <h1 className='text-3xl my-4'>View Inventory</h1>
       {loading ? (<Spinner />) : (
-        <div className="flex flex-col border-2 border-sky-400 rounded-x1 w-fit p-4">
-          <div className="my-4">
-            <span className='text-1 mr-4 text-gray-500'>Id:</span>
-            <span>{inventory && inventory._id}</span>
-          </div>
-          <div className="my-4">
-            <span className='text-1 mr-4 text-gray-500'>Item:</span>
-            <span>{inventory && inventory.item}</span>
-          </div>
-          <div className="my-4">
-            <span className='text-1 mr-4 text-gray-500'>Type:</span>
-            <span>{inventory && inventory.type}</span>
-          </div>
-          <div className="my-4">
-            <span className='text-1 mr-4 text-gray-500'>Description:</span>
-            <span>
-              {inventory && inventory.description ? (
-                <ul>
-                  {inventory.description.map((desc, index) => (
-                    <li key={index}>{desc}</li>
-                  ))}
-                </ul>
-              ) : 'N/A'}
-            </span>
-          </div>
-          <div className="my-4">
-            <span className='text-1 mr-4 text-gray-500'>Price:</span>
-            <span>{inventory && inventory.price}</span>
-          </div>
-          <div className="my-4">
-            <span className='text-1 mr-4 text-gray-500'>Quantity:</span>
-            <span>{inventory && inventory.quantity}</span>
-          </div>
+        <div className="flex justify-around">
+          <span className="flex flex-col border-2 border-sky-400 rounded-x1 w-fit p-4">
+            <div className="my-4">
+              <span className='text-1 mr-4 text-gray-500'>Id:</span>
+              <span>{inventory && inventory._id}</span>
+            </div>
+            <div className="my-4">
+              <span className='text-1 mr-4 text-gray-500'>Item:</span>
+              <span>{inventory && inventory.item}</span>
+            </div>
+            <div className="my-4">
+              <span className='text-1 mr-4 text-gray-500'>Type:</span>
+              <span>{inventory && inventory.type}</span>
+            </div>
+            <div className="my-4">
+              <span className='text-1 mr-4 text-gray-500'>Description:</span>
+              <span>
+                {inventory && inventory.description ? (
+                  <ul>
+                    {inventory.description.map((desc, index) => (
+                      <li key={index}>{desc}</li>
+                    ))}
+                  </ul>
+                ) : 'N/A'}
+              </span>
+            </div>
+            <div className="my-4">
+              <span className='text-1 mr-4 text-gray-500'>Price:</span>
+              <span>{inventory && inventory.price}</span>
+            </div>
+            <div className="my-4">
+              <span className='text-1 mr-4 text-gray-500'>Quantity:</span>
+              <span>{inventory && inventory.quantity}</span>
+            </div>
+          </span>
+          <span className='flex flex-center'>
+            <h1 className='text-center mx-auto text-teal-700'>image/images here not included to save db space</h1>
+          </span>
         </div>
       )}
     </div>

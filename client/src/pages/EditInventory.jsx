@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 
 
-function AddInventory() {
+function EditInventory() {
 
   const [item, setItem] = useState('');
   const [type, setType] = useState('');
@@ -17,9 +17,24 @@ function AddInventory() {
   const {id} = useParams();
   useEffect(() => {
     setLoading(true);
-    axios.post(`http://localhost:5000/inventory/${id}`);
-  },[]);
-  const handleInventory = ()=>{
+    axios.get(`http://localhost:5000/inventory/${id}`)
+    .then((response) => {
+      console.log('Response Data:', response.data.fetchedInventory);
+      const data = response.data.fetchedInventory;
+      setItem(data.item);
+      setType(data.type);
+      setDescription(data.description);
+      setPrice(data.price);
+      setQuantity(data.quantity);
+      setLoading(false);
+    })
+    .catch((error) => {
+      console.log(error);
+      setLoading(false);
+      alert('An error occurred. Please try again.');
+    });
+  },[id]);
+  const handleEditInventory = ()=>{
     const data = {
       item,
       type,
@@ -29,7 +44,7 @@ function AddInventory() {
     };
     console.log(data);
     setLoading(true);
-    axios.post('http://localhost:5000/inventory')
+    axios.put(`http://localhost:5000/inventory/${id}`, data)
     .then((response) => {
       console.log(response);
       setLoading(false);
@@ -46,7 +61,7 @@ function AddInventory() {
   return (
     <div>
       < BackButton/>
-      <h1 className='text-3x1 my-4'>Add Inventory</h1>
+      <h1 className='text-3x1 my-4'>Edit Inventory</h1>
       {loading ? <Spinner /> : ''}
 
 
@@ -72,7 +87,12 @@ function AddInventory() {
           </div>
           <div className='my-4'>
             <label htmlFor='description' className='text-1 mr-4 text-gray-500'>Description:</label>
-
+          <textarea
+            id='description'
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className='border border-slate-700 rounded-md p-2 w-full'
+            />
           </div>
           <div className='my-4'>
             <label htmlFor='price' className='text-1 mr-4 text-gray-500'>Price:</label>
@@ -94,9 +114,9 @@ function AddInventory() {
           </div>
           <div className='my-4'>
             <button
-            onClick={handleInventory}
+            onClick={handleEditInventory}
             className='bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600'>
-              Add Inventory
+              Edit Inventory
             </button>
           </div>
         </div>
@@ -104,5 +124,5 @@ function AddInventory() {
   )
 }
 
-export default AddInventory
+export default EditInventory
 

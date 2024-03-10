@@ -49,7 +49,11 @@ function Home() {
                         <tr key={item._id}>
                             <td className='border border-slate-700 rounded-md text-center'>{item.item}</td>
                             <td className='border border-slate-700 rounded-md text-center'>{item.type}</td>
-                            <td className='border border-slate-700 rounded-md text-center'>{item.description}</td>
+                            <td className='border border-slate-700 rounded-md text-center'>                <ul>
+                  {item.description.map((desc, index) => (
+                    <li key={index}>{desc}</li>
+                  ))}
+                </ul></td>
                             <td className='border border-slate-700 rounded-md text-center'>{item.price}</td>
                             <td className='border border-slate-700 rounded-md text-center'>{item.quantity}</td>
                             <td className='border border-slate-700 rounded-md text-center'>

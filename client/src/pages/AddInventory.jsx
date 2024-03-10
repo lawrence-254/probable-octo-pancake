@@ -9,7 +9,7 @@ function AddInventory() {
 
   const [item, setItem] = useState('');
   const [type, setType] = useState('');
-  const [description, setDescription] = useState(['']);
+  const [description, setDescription] = useState([]);
   const [price, setPrice] = useState('');
   const [quantity, setQuantity] = useState('');
   const [loading, setLoading] = useState(false);
